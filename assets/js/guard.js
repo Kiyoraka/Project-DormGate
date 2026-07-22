@@ -122,13 +122,16 @@
     if (e.target === overlay) closeScan();
   });
 
-  /* ---------- scanner view toggle ---------- */
+  /* ---------- view toggle (login / console / scanner / search) ---------- */
   function show(view) {
-    $('#console').classList.toggle('active', view === 'console');
-    $('#scanner').classList.toggle('active', view === 'scanner');
+    ['login', 'console', 'scanner', 'search'].forEach((v) => {
+      const n = document.getElementById(v);
+      if (n) n.classList.toggle('active', v === view);
+    });
     window.scrollTo(0, 0);
     if (window.dgPaintQR) window.dgPaintQR();
   }
+  $('#guardSignIn').addEventListener('click', () => show('console'));
   $('#toScanner').addEventListener('click', () => show('scanner'));
   $('#toConsole').addEventListener('click', () => show('console'));
   $('#toConsole2').addEventListener('click', () => show('console'));
