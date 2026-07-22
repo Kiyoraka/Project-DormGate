@@ -171,6 +171,8 @@ h1, h2, h3, h4 { margin: 0; font-family: var(--head); }
   font: 600 15px var(--sans); color: var(--ink); }
 .auth-input::placeholder { color: var(--muted-2); font-weight: 500; }
 .auth-input[type="password"] { letter-spacing: 3px; font-size: 17px; }
+/* keep the placeholder readable — the wide tracking is only for typed dots */
+.auth-input[type="password"]::placeholder { letter-spacing: normal; font-size: 15px; }
 
 /* inline error */
 .auth-err { display: none; font: 600 11.5px var(--sans); color: var(--red);
