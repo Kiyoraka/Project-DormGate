@@ -52,6 +52,38 @@
        </div>`));
   });
 
+  /* ---------- late returns page ---------- */
+  $('#lCurfew').textContent = D.curfew;
+  $('#lCount').textContent = D.lateToday.length;
+  $('#lWorst').textContent = D.lateToday.reduce((a, l) =>
+    parseInt(l.late, 10) > parseInt(a, 10) ? l.late : a, '0 min');
+  $('#lOut').textContent = D.counts.outside;
+
+  const lateFull = $('#lateFullBody');
+  D.lateToday.forEach((l) => lateFull.append(el(
+    `<div class="grid late-cols tr">
+       <div style="min-width:0"><div class="nm">${l.n}</div><div class="id">${l.id}</div></div>
+       <span class="c">${l.rm}</span>
+       <span class="c">${l.dest}</span>
+       <span class="c ink">${l.tin}</span>
+       <span class="pill-c badge-red">${l.late}</span>
+     </div>`)));
+
+  /* ---------- movement history page (all students) ---------- */
+  const histBody = $('#historyBody');
+  D.scans.forEach((s) => histBody.append(el(
+    `<div class="grid report-cols tr" style="padding:10px 0">
+       <span class="c">${s.t}</span>
+       <div style="min-width:0"><div class="nm">${s.n}</div><div class="id">${s.id}</div></div>
+       <span class="c">${s.rm}</span>
+       <span class="c ink">${s.type}</span>
+       <span class="c" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${s.dest}</span>
+       ${scanCell(s)}
+       ${recordCell(s)}
+     </div>`)));
+  $('#histCount').textContent =
+    `${D.scans.length} movements today · ${D.scans.filter((s) => s.late).length} late returns`;
+
   /* ---------- students: ONLY those currently outing ---------- */
   $('#wCurfew').textContent = D.curfew;
   const searchBody = $('#searchBody');
