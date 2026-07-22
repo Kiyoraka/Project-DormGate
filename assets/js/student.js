@@ -231,6 +231,17 @@
     go('recorded');
   }
 
+  /* ---------- profile ---------- */
+  $('#profAv').textContent = D.student.initials;
+  $('#profName').textContent = D.student.fullName;
+  $('#profSub').textContent = `${D.student.id} · Room ${D.student.room}`;
+  $('#profTable').innerHTML = [
+    ['Phone', D.student.phone],
+    ['Email', D.student.email],
+    ['Parent / Guardian', D.student.parent],
+    ['Parent phone', D.student.parentPhone],
+  ].map((r) => `<div class="dr"><span class="dk">${r[0]}</span><span class="dv">${r[1]}</span></div>`).join('');
+
   /* ---------- history ---------- */
   const badgeFor = (r) => r.late ? ['LATE RETURN', 'red'] : r.ret ? ['RETURNED', 'blue'] : ['NORMAL', 'green'];
   $('#histList').append(...D.histRows.map((r) => {
