@@ -44,6 +44,7 @@
     <span class="role">Guard Console</span>
     <div class="right">
       <a class="home" href="index.html">← Roles</a>
+      <span class="switch" id="toSearch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#fff" stroke-width="2"/><path d="M20 20l-4-4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Search</span>
       <span class="switch" id="toScanner"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="6" y="2" width="12" height="20" rx="3" stroke="#fff" stroke-width="2"/><path d="M10 19h4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Mobile scanner</span>
       <span class="gate">Main Gate</span>
       <span class="clock">10:26 PM</span>
@@ -124,6 +125,39 @@
         <button class="btn btn-outline btn-sm" style="flex:1" id="toConsole2">Cancel</button>
         <button class="btn btn-primary btn-sm" style="flex:1.7" data-scan="outing">Confirm — Out</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GUARD SEARCH ============ -->
+<div class="view" id="search">
+  <header class="topbar">
+    <div class="logo"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="2"/><path d="M14 14h3v3h-3zM18 18h3v3h-3z" fill="#fff"/></svg></div>
+    <span class="brand">DormGate</span>
+    <span class="divider"></span>
+    <span class="role">Student Search</span>
+    <div class="right">
+      <span class="switch" id="toConsole3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Console</span>
+      <div class="who"><span class="avatar" id="gAv2">RH</span><span id="gName2">Rosli Hamid</span></div>
+    </div>
+  </header>
+  <div class="console-body">
+    <div class="srch-bar">
+      <div class="srch-box">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#1D5BF0" stroke-width="2"/><path d="M20 20l-4-4" stroke="#1D5BF0" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="q">aisyah</span><span class="caret"></span>
+        <span class="ph">search by name, student ID or room</span>
+      </div>
+      <div class="srch-drop">All blocks <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#5A6E92" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="srch-drop">Any status <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#5A6E92" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+    <div class="srch-split">
+      <div class="srch-panel">
+        <div class="srch-grid srch-head"><span>STUDENT</span><span>ROOM</span><span>STATUS</span><span>LAST SCAN</span></div>
+        <div id="guardSearchBody"><!-- JS --></div>
+        <div class="srch-note">5 of 464 students match "aisyah" filters</div>
+      </div>
+      <div class="sdetail" id="guardDetail"><!-- JS --></div>
     </div>
   </div>
 </div>
