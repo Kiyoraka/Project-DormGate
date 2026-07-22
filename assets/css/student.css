@@ -124,16 +124,39 @@ body { background: #dfe7f4; }
 .dest.sel .dn { font-weight: 800; }
 .dest.sel .tick { display: block; }
 
-/* ---------- 1f Pass ready ---------- */
-#pass { background: #fff; align-items: center; padding: 40px 26px 34px; }
+/* ---------- Scan the gate QR ---------- */
+#scan { background: var(--navy-deep); }
+.scan-head { padding: 30px 22px 10px; display: flex; align-items: center; gap: 10px; }
+.scan-head .iconbtn { margin-left: -6px; }
+.scan-head .t { font: 700 19px var(--head); color: #fff; }
+.scan-head .loc { margin-left: auto; font: 700 11px var(--sans); color: var(--muted-3);
+  border: 1px solid rgba(255,255,255,.2); border-radius: 999px; padding: 5px 11px; }
+.viewfinder { flex: 1; position: relative; margin: 8px 22px 0; border-radius: 20px; overflow: hidden;
+  background: radial-gradient(120% 90% at 50% 30%, var(--navy-soft) 0%, var(--navy-deep) 100%); }
+.viewfinder .hint { position: absolute; left: 0; right: 0; top: 14px; text-align: center;
+  font: 700 12px var(--sans); color: var(--muted-3); padding: 0 20px; }
+.viewfinder .scan-status { position: absolute; left: 0; right: 0; bottom: 16px; text-align: center;
+  font: 700 12px var(--sans); color: var(--sky); }
+.frame { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame .box { width: 220px; height: 220px; position: relative; }
+.frame .c { position: absolute; width: 40px; height: 40px; }
+.frame .tl { top: 0; left: 0; border-top: 4px solid var(--sky); border-left: 4px solid var(--sky); border-radius: 10px 0 0 0; }
+.frame .tr { top: 0; right: 0; border-top: 4px solid var(--sky); border-right: 4px solid var(--sky); border-radius: 0 10px 0 0; }
+.frame .bl { bottom: 0; left: 0; border-bottom: 4px solid var(--sky); border-left: 4px solid var(--sky); border-radius: 0 0 0 10px; }
+.frame .br { bottom: 0; right: 0; border-bottom: 4px solid var(--sky); border-right: 4px solid var(--sky); border-radius: 0 0 10px 0; }
+.frame .laser { position: absolute; left: 8px; right: 8px; height: 3px; border-radius: 2px;
+  background: var(--sky); box-shadow: 0 0 14px var(--sky); animation: dg-scanline 2.6s ease-in-out infinite; }
+
+/* popup: destination picker inside the dialog */
+.dialog .dest-list { display: flex; flex-direction: column; gap: 8px; max-height: 210px; overflow-y: auto; }
+.dialog .dest { height: 48px; }
+
+/* ---------- 1f Pass ready / Movement recorded ---------- */
+#recorded { background: #fff; align-items: center; padding: 46px 26px 34px; }
 .pass-check { width: 56px; height: 56px; border-radius: 50%; background: var(--green-tint);
   display: flex; align-items: center; justify-content: center; }
-#pass h2 { font: 800 22px var(--head); color: var(--ink); margin-top: 14px; }
-#pass .lead { font: 500 13px/1.5 var(--sans); color: var(--muted); margin-top: 6px; text-align: center; }
-.pass-qr { margin-top: 22px; padding: 16px; border: 1.5px solid var(--border); border-radius: 22px;
-  box-shadow: 0 14px 34px rgba(10,30,66,.1); }
-.pass-qr img { border-radius: 10px; }
-.pass-meta { font: 700 12.5px var(--sans); color: var(--muted); margin-top: 12px; }
+#recorded h2 { font: 800 22px var(--head); color: var(--ink); margin-top: 14px; }
+#recorded .lead { font: 500 13px/1.5 var(--sans); color: var(--muted); margin-top: 6px; text-align: center; }
 .detail-table { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
   padding: 6px 16px; margin-top: 18px; }
 .detail-table .dr { display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border-soft); }

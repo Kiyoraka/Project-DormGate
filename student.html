@@ -55,17 +55,11 @@
         <span id="lastScan" style="font:700 12.5px var(--sans);color:var(--ink)">IN · 4:56 PM · Main Gate</span>
       </div>
 
-      <div class="qr-card">
-        <h4>My permanent QR Code</h4>
-        <img data-qr width="164" height="164" alt="Student QR">
-        <div class="meta" id="qrMeta">23DLS001 · Nur Aisyah</div>
-        <div class="hint">Show at the guardhouse — it never changes</div>
-      </div>
-
-      <button class="btn btn-primary" style="height:52px;border-radius:14px" data-nav="request">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
-        New Movement Request
+      <button class="btn btn-primary" style="height:56px;border-radius:14px" data-nav="scan">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 8V5a2 2 0 012-2h3M16 3h3a2 2 0 012 2v3M21 16v3a2 2 0 01-2 2h-3M8 21H5a2 2 0 01-2-2v-3M3 12h18" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+        Scan Gate QR
       </button>
+      <div class="note" style="margin-top:-6px">Scan the QR displayed at the guardhouse to record your movement</div>
 
       <div class="section-head"><span class="t">Recent movement</span><span class="a" data-nav="history">View all</span></div>
       <div class="mini-list" id="recentList"><!-- JS --></div>
@@ -81,71 +75,37 @@
     </nav>
   </section>
 
-  <!-- ========== 1d/1e · MOVEMENT REQUEST ========== -->
-  <section class="s" id="request">
-    <div class="subhead">
-      <div class="back">
-        <div class="iconbtn" data-nav="dashboard"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="#0A1E42" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h2>New Movement</h2>
-      </div>
-      <div class="sub" id="reqSub">Choose your movement type before going to the guardhouse.</div>
+  <!-- ========== SCAN THE GATE QR ========== -->
+  <section class="s" id="scan">
+    <div class="scan-head">
+      <div class="iconbtn" data-nav="dashboard"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="t">Scan Gate QR</span>
+      <span class="loc" id="scanGate">Main Gate</span>
     </div>
-    <div class="pad scrollable" style="display:flex;flex-direction:column;gap:16px">
-      <div class="segmented" id="moveSeg">
-        <div class="seg on" data-move="outing">Outing</div>
-        <div class="seg" data-move="home">Going Home</div>
-      </div>
-
-      <!-- Outing mode -->
-      <div id="modeOuting" style="display:flex;flex-direction:column;gap:16px">
-        <div class="fieldgroup">
-          <div class="field-label">DESTINATION</div>
-          <div class="dest-list" id="destList"><!-- JS --></div>
-        </div>
-        <div class="banner banner-blue">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1D5BF0" stroke-width="2"/><path d="M12 7v5l3.5 2" stroke="#1D5BF0" stroke-width="2" stroke-linecap="round"/></svg>
-          <span>Curfew is <b id="curfewA">10:00 PM</b>. Returning later is recorded as a <b>Late Return</b> and your parent is notified.</span>
+    <div class="viewfinder">
+      <div class="hint">Point at the QR displayed at the guardhouse</div>
+      <div class="frame">
+        <div class="box">
+          <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+          <span class="laser"></span>
         </div>
       </div>
-
-      <!-- Going Home mode -->
-      <div id="modeHome" style="display:none;flex-direction:column;gap:16px">
-        <div class="fieldgroup">
-          <div class="field-label">DESTINATION</div>
-          <div class="field focus">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z" stroke="#1D5BF0" stroke-width="2"/><circle cx="12" cy="10" r="2.5" stroke="#1D5BF0" stroke-width="2"/></svg>
-            <span>Johor Bahru</span>
-          </div>
-        </div>
-        <div class="fieldgroup">
-          <div class="field-label">EXPECTED RETURN DATE</div>
-          <div class="field" style="justify-content:space-between">
-            <span>20 July 2026</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="3" stroke="#8A9AB8" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="#8A9AB8" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-        </div>
-        <div class="banner banner-amber">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M6 9a6 6 0 1112 0c0 5 2 6 2 6H4s2-1 2-6" stroke="#C77700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 19a2 2 0 004 0" stroke="#C77700" stroke-width="2" stroke-linecap="round"/></svg>
-          <span>Your parent/guardian is notified when you leave and again when you return. No Late Return applies to Going Home.</span>
-        </div>
-      </div>
+      <div class="scan-status" id="scanStatus">Searching…</div>
     </div>
     <div class="footpad">
-      <button class="btn btn-primary" data-nav="pass">Confirm</button>
-      <div class="note" id="reqFoot" style="margin-top:10px">This links the outing to your permanent QR — no new code needed.</div>
+      <button class="btn btn-primary" id="simulateScan">Simulate successful scan</button>
+      <div class="note" style="margin-top:10px">Demo build — no real camera. The scan resolves automatically too.</div>
     </div>
   </section>
 
-  <!-- ========== 1f · PASS READY ========== -->
-  <section class="s" id="pass">
+  <!-- ========== MOVEMENT RECORDED ========== -->
+  <section class="s" id="recorded">
     <div class="pass-check">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="#12923F" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
-    <h2>Movement linked</h2>
-    <div class="lead">Show your QR Code at the guardhouse.<br>The guard will see these details when scanning.</div>
-    <div class="pass-qr"><img data-qr width="212" height="212" alt="Student QR"></div>
-    <div class="pass-meta">23DLS001 · Nur Aisyah · Room A-12</div>
-    <div class="detail-table" id="passTable"><!-- JS fills per move type --></div>
+    <h2 id="recTitle">Movement recorded</h2>
+    <div class="lead" id="recLead">Your movement has been saved at the guardhouse.</div>
+    <div class="detail-table" id="recTable"><!-- JS --></div>
     <button class="btn btn-outline" style="margin-top:auto" data-nav="dashboard">Back to Home</button>
   </section>
 
@@ -190,6 +150,11 @@
     </nav>
   </section>
 
+</div>
+
+<!-- ========== MOVEMENT POPUP (after a successful scan) ========== -->
+<div class="overlay" id="moveOverlay">
+  <div class="dialog" id="moveDialog"><!-- JS --></div>
 </div>
 
 <script src="assets/js/data.js"></script>
