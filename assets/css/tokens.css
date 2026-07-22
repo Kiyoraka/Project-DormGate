@@ -166,6 +166,28 @@ h1, h2, h3, h4 { margin: 0; font-family: var(--head); }
   border-radius: 999px; padding: 5px 12px; letter-spacing: .5px; }
 .auth-back { text-align: center; font: 700 12px var(--sans); color: var(--muted-2); margin-top: 2px; }
 
+/* real inputs inside the shared .field shell */
+.auth-input { width: 100%; border: none; outline: none; background: transparent; padding: 0;
+  font: 600 15px var(--sans); color: var(--ink); }
+.auth-input::placeholder { color: var(--muted-2); font-weight: 500; }
+.auth-input[type="password"] { letter-spacing: 3px; font-size: 17px; }
+
+/* inline error */
+.auth-err { display: none; font: 600 11.5px var(--sans); color: var(--red);
+  background: var(--red-tint); border-radius: 10px; padding: 9px 12px; }
+.auth-err.show { display: block; animation: dg-fade .2s ease; }
+
+/* demo quick-fill: 1 row x 3 columns */
+.auth-divider { display: flex; align-items: center; gap: 10px; }
+.auth-divider .l { flex: 1; height: 1px; background: var(--border); }
+.auth-divider .t { font: 700 10px var(--sans); color: var(--muted-2); letter-spacing: .6px; white-space: nowrap; }
+.auth-quick { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.auth-quick button { height: 40px; border-radius: 11px; border: 1.5px solid var(--border);
+  background: #fff; color: var(--muted); font: 800 12px var(--sans); cursor: pointer;
+  transition: border-color .15s, color .15s, background .15s; }
+.auth-quick button:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-tint); }
+.auth-quick button:active { transform: translateY(1px); }
+
 /* ============================================================
    Search + detail (backs the Guard search view)
    ============================================================ */
