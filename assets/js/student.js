@@ -146,4 +146,9 @@
      </div>`)));
 
   paintPass();
+
+  /* ---------- entry point ----------
+     Auth lives on index.html now. Arriving with #register (from the login's
+     "Create account" link) opens registration; otherwise the dashboard. */
+  if (location.hash === '#register') go('register');
 })();

@@ -11,43 +11,11 @@
 <body>
 <div class="app" id="app">
 
-  <!-- ========== 1a · LOGIN ========== -->
-  <section class="s active" id="login">
-    <div class="login-top">
-      <div class="login-logo">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="2"/><path d="M14 14h3v3h-3zM18 18h3v3h-3z" fill="#fff"/></svg>
-      </div>
-      <div style="text-align:center">
-        <div class="name">DormGate</div>
-        <div class="desc">Dormitory Movement System</div>
-      </div>
-    </div>
-    <div class="login-sheet">
-      <h3>Student sign in</h3>
-      <div class="fieldgroup">
-        <div class="field-label">STUDENT ID (MATRIX NO.)</div>
-        <div class="field focus" style="font-weight:600">23DLS001</div>
-      </div>
-      <div class="fieldgroup">
-        <div class="field-label">PASSWORD</div>
-        <div class="field pwd-field">
-          <span class="dots">••••••••</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" stroke="#8A9AB8" stroke-width="1.8"/><circle cx="12" cy="12" r="3" stroke="#8A9AB8" stroke-width="1.8"/></svg>
-        </div>
-      </div>
-      <div class="forgot">Forgot password?</div>
-      <button class="btn btn-primary" data-nav="dashboard">Sign In</button>
-      <div class="orline"><span class="l"></span><span class="t">NEW STUDENT?</span><span class="l"></span></div>
-      <button class="btn btn-ghost btn-sm" data-nav="register">Create Account</button>
-      <div class="staff-line">Staff? <a href="guard.html">Guard</a> &amp; <a href="warden.html">Warden</a> sign in</div>
-    </div>
-  </section>
-
   <!-- ========== 1b · REGISTER ========== -->
   <section class="s" id="register">
     <div class="subhead">
       <div class="back">
-        <div class="iconbtn" data-nav="login"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="#0A1E42" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <a class="iconbtn" href="index.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="#0A1E42" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <h2>Create account</h2>
       </div>
       <div class="sub">Register once — your <b style="color:var(--blue)">permanent QR Code</b> is generated after this step and never changes.</div>
@@ -59,7 +27,7 @@
   </section>
 
   <!-- ========== 1c · DASHBOARD ========== -->
-  <section class="s" id="dashboard">
+  <section class="s active" id="dashboard">
     <div class="dash-head">
       <div class="top">
         <div class="avatar" id="dashAv">NA</div>
