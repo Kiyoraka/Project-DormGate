@@ -175,16 +175,16 @@
        </div>
      </div>`;
 
-  /* ---------- view toggle (login / console / scanner / search) ---------- */
+  /* ---------- view toggle (console / scanner / search) ----------
+     Auth lives on index.html now — the console is the entry view. */
   function show(view) {
-    ['login', 'console', 'scanner', 'search'].forEach((v) => {
+    ['console', 'scanner', 'search'].forEach((v) => {
       const n = document.getElementById(v);
       if (n) n.classList.toggle('active', v === view);
     });
     window.scrollTo(0, 0);
     if (window.dgPaintQR) window.dgPaintQR();
   }
-  $('#guardSignIn').addEventListener('click', () => show('console'));
   $('#toSearch').addEventListener('click', () => show('search'));
   $('#toConsole3').addEventListener('click', () => show('console'));
   $('#toScanner').addEventListener('click', () => show('scanner'));
