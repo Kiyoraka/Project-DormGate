@@ -1,7 +1,7 @@
 /* ============================================================
-   DormGate — Guard console (desktop) + mobile scanner
-   Bare responsive: console fills viewport; scanner is a
-   phone-width dark view. No browser-window chrome.
+   DormGate — Guard console (desktop) + gate QR display
+   Bare responsive: console fills the viewport. The guard displays
+   a rotating gate QR instead of scanning. No browser-window chrome.
    ============================================================ */
 
 body { background: var(--surface); }
@@ -90,42 +90,24 @@ body { background: var(--surface); }
 
 /* popup shell (.overlay / .dialog) now lives in tokens.css — shared with the student app */
 
-/* ---------- mobile scanner (1m) ---------- */
-#scanner { justify-content: center; background: #dfe7f4; padding: 22px 0; min-height: 100vh; }
-.phone { width: 100%; max-width: 440px; margin: 0 auto; background: var(--navy-deep); border-radius: 30px;
-  min-height: calc(100vh - 44px); display: flex; flex-direction: column; overflow: hidden;
-  box-shadow: 0 0 60px rgba(10,30,66,.3); position: relative; }
-.scanner-head { padding: 26px 22px 10px; display: flex; align-items: center; gap: 10px; }
-.scanner-head .t { font: 700 19px var(--head); color: #fff; }
-.scanner-head .loc { margin-left: auto; font: 700 11px var(--sans); color: var(--muted-3);
-  border: 1px solid rgba(255,255,255,.2); border-radius: 999px; padding: 5px 11px; }
-.viewfinder { flex: 1; position: relative; margin: 8px 22px 0; border-radius: 20px; overflow: hidden;
-  background: radial-gradient(120% 90% at 50% 30%, var(--navy-soft) 0%, var(--navy-deep) 100%); }
-.viewfinder .hint { position: absolute; left: 0; right: 0; top: 14px; text-align: center;
-  font: 700 12px var(--sans); color: var(--muted-3); }
-.frame { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-.frame .box { width: 230px; height: 230px; position: relative; }
-.frame .c { position: absolute; width: 40px; height: 40px; }
-.frame .tl { top: 0; left: 0; border-top: 4px solid var(--sky); border-left: 4px solid var(--sky); border-radius: 10px 0 0 0; }
-.frame .tr { top: 0; right: 0; border-top: 4px solid var(--sky); border-right: 4px solid var(--sky); border-radius: 0 10px 0 0; }
-.frame .bl { bottom: 0; left: 0; border-bottom: 4px solid var(--sky); border-left: 4px solid var(--sky); border-radius: 0 0 0 10px; }
-.frame .br { bottom: 0; right: 0; border-bottom: 4px solid var(--sky); border-right: 4px solid var(--sky); border-radius: 0 0 10px 0; }
-.frame .qr { position: absolute; top: 40px; left: 40px; opacity: .9; border-radius: 8px; }
-.frame .laser { position: absolute; left: 8px; right: 8px; height: 3px; border-radius: 2px;
-  background: var(--sky); box-shadow: 0 0 14px var(--sky); animation: dg-scanline 2.6s ease-in-out infinite; }
-.result-sheet { background: #fff; border-radius: 24px 24px 0 0; margin-top: 14px; padding: 18px 22px 30px;
-  box-shadow: 0 -14px 34px rgba(0,0,0,.4); }
-.result-sheet .grab { width: 44px; height: 5px; border-radius: 999px; background: var(--border); margin: 0 auto 14px; }
-.result-sheet .who { display: flex; align-items: center; gap: 12px; }
-.result-sheet .who .av { width: 44px; height: 44px; border-radius: 14px; background: var(--blue-tint);
-  display: flex; align-items: center; justify-content: center; font: 800 15px var(--head); color: var(--blue); }
-.result-sheet .nm { font: 800 15px var(--head); color: var(--ink); }
-.result-sheet .who .sub { font: 600 11.5px var(--sans); color: var(--muted); }
-.result-sheet .dest { display: flex; justify-content: space-between; background: var(--surface);
-  border: 1px solid var(--border); border-radius: 12px; padding: 11px 14px; margin-top: 12px;
-  font: 600 12px var(--sans); color: var(--muted); }
-.result-sheet .dest b { font-weight: 800; color: var(--ink); }
-.result-sheet .acts { display: flex; gap: 10px; margin-top: 14px; }
+/* ---------- gate QR (students scan this) ---------- */
+#gate { flex-direction: column; min-height: 100vh; }
+.gate-body { flex: 1; display: flex; align-items: center; justify-content: center; padding: 30px 26px; }
+.gate-card { background: #fff; border: 1px solid var(--border); border-radius: 22px; padding: 30px 34px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;
+  box-shadow: 0 20px 50px rgba(10,30,66,.10); max-width: 460px; width: 100%; }
+.gate-title { font: 800 20px var(--head); color: var(--ink); }
+.gate-sub { font: 600 12.5px/1.5 var(--sans); color: var(--muted); max-width: 320px; }
+.gate-qr { margin-top: 8px; padding: 14px; border: 1.5px solid var(--border); border-radius: 20px; }
+.gate-qr img { display: block; border-radius: 10px; }
+.gate-token { font: 700 11.5px ui-monospace, Menlo, monospace; color: var(--muted-2);
+  background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px; }
+.gate-count { font: 600 13px var(--sans); color: var(--muted); margin-top: 2px; }
+.gate-count b { font: 800 20px var(--head); color: var(--ink); margin-left: 4px; }
+.gate-bar { width: 100%; max-width: 300px; height: 6px; border-radius: 999px; background: var(--border-soft); overflow: hidden; }
+.gate-bar span { display: block; height: 100%; width: 100%; background: var(--blue);
+  border-radius: 999px; transition: width 1s linear; }
+.gate-note { font: 600 11.5px/1.5 var(--sans); color: var(--muted-2); max-width: 320px; }
 
 @media (max-width: 1080px) { .console-grid { grid-template-columns: 1fr; } .rail { flex-direction: column; } }
 @media (max-width: 720px) {
@@ -133,4 +115,6 @@ body { background: var(--surface); }
   .topbar { padding: 0 14px; gap: 10px; } .topbar .role, .topbar .gate { display: none; }
   .scan-cols { grid-template-columns: 60px 1.4fr 44px 66px; }
   .scan-cols .col-move, .scan-cols .col-dest, .scan-cols .col-scan { display: none; }
+  .gate-card { padding: 24px 18px; }
+  .gate-qr img { width: 210px; height: 210px; }
 }

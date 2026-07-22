@@ -108,43 +108,7 @@
       { t: 'Curfew reminder', b: 'You have not returned to the dormitory. Please return before the 10:00 PM curfew.', tm: '9:30 PM', tone: 'amber' },
       { t: 'Outing recorded', b: 'East Coast Mall — recorded when you scanned the gate QR. Your parent has been notified.', tm: '6:12 PM', tone: 'blue' },
       { t: 'Checked in', b: 'Welcome back! Time in 9:40 PM at Main Gate. Your parent has been notified.', tm: 'Yesterday', tone: 'green' },
-    ],
-
-    /* guard scan-result dialog states (1j / 1k / 1l) */
-    scanResults: {
-      outing: {
-        key: 'outing', badgeTone: 'green', headerTone: 'plain', time: '6:15 PM',
-        initials: 'NA', avatarBg: 'var(--blue-tint)', avatarInk: 'var(--blue)',
-        name: 'Nur Aisyah', sub: '23DLS001 · Room A-12', statusNow: 'INSIDE',
-        rows: [['Movement type', 'OUTING', 'blue'], ['Destination', 'East Coast Mall'], ['Requested', 'Today, 6:12 PM']],
-        from: 'INSIDE', to: 'OUTSIDE — records Time Out 6:15 PM', toTone: 'blue',
-        note: 'Parent will be notified of this outing.', confirm: 'Confirm — Out', danger: false,
-      },
-      home: {
-        key: 'home', badgeTone: 'green', headerTone: 'plain', time: '8:56 PM',
-        initials: 'FN', avatarBg: 'var(--amber-tint)', avatarInk: 'var(--amber)',
-        name: 'Farah Nabila', sub: '23DHF009 · Room A-18', statusNow: 'INSIDE',
-        rows: [['Movement type', 'GOING HOME', 'amber'], ['Destination', 'Johor Bahru'], ['Expected return', '20 July 2026']],
-        from: 'INSIDE', to: 'GOING HOME — no curfew applies', toTone: 'amber',
-        note: 'Parent will be notified now and on return.', confirm: 'Confirm — Out', danger: false,
-      },
-      return: {
-        key: 'return', badgeTone: 'blue', headerTone: 'plain', time: '9:40 PM',
-        initials: 'SM', avatarBg: 'var(--blue-tint)', avatarInk: 'var(--blue)',
-        name: 'Siti Maryam', sub: '23DLS045 · Room A-03', statusNow: 'OUTSIDE',
-        rows: [['Movement type', 'OUTING', 'blue'], ['Destination', 'Restaurant'], ['Time out', '5:45 PM'], ['Time in (now)', '9:40 PM · on time', 'green']],
-        from: 'OUTSIDE', to: 'INSIDE', toTone: 'green',
-        note: 'Returned before curfew — no Late Return. Parent will be notified of the return.', confirm: 'Confirm Return', danger: false,
-      },
-      late: {
-        key: 'late', badgeTone: 'blue', headerTone: 'danger', time: '10:24 PM',
-        initials: 'AR', avatarBg: 'var(--red-tint)', avatarInk: 'var(--red)',
-        name: 'Arjun Ramesh', sub: '24DKA033 · Room D-15', statusNow: 'OUTSIDE',
-        rows: [['Movement type', 'OUTING', 'blue'], ['Destination', 'East Coast Mall'], ['Time out', '7:12 PM'], ['Time in (now)', '10:24 PM · 24 min late', 'red']],
-        from: 'OUTSIDE', to: 'INSIDE', toTone: 'green', extra: '+ LATE RETURN record',
-        note: 'Student and parent receive a Late Return alert.', confirm: 'Confirm Return — Late', danger: true,
-      },
-    },
+    ]
   };
 
   window.DG_DATA = DATA;

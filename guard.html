@@ -20,7 +20,6 @@
     <div class="right">
       <a class="home" href="index.html">← Sign out</a>
       <span class="switch" id="toSearch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#fff" stroke-width="2"/><path d="M20 20l-4-4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Search</span>
-      <span class="switch" id="toScanner"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="6" y="2" width="12" height="20" rx="3" stroke="#fff" stroke-width="2"/><path d="M10 19h4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Mobile scanner</span>
       <span class="gate">Main Gate</span>
       <span class="clock">10:26 PM</span>
       <div class="who"><span class="avatar" id="gAv">RH</span><span id="gName">Rosli Hamid</span></div>
@@ -33,9 +32,9 @@
         <h1>Tonight's overview</h1>
         <div class="sub">Sunday, 19 July 2026 · curfew <span id="cf1">10:00 PM</span> <span class="late">· passed 26 min ago</span></div>
       </div>
-      <div class="scan-btn" data-scan="outing">
+      <div class="scan-btn" id="toGate">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 8V5a2 2 0 012-2h3M16 3h3a2 2 0 012 2v3M21 16v3a2 2 0 01-2 2h-3M8 21H5a2 2 0 01-2-2v-3M3 12h18" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
-        Scan QR
+        Show Gate QR
       </div>
     </div>
 
@@ -71,35 +70,28 @@
   </div>
 </div>
 
-<!-- ============ MOBILE SCANNER (1m) ============ -->
-<div class="view" id="scanner">
-  <div class="phone">
-    <div class="scanner-head">
-      <span class="t">Scan QR</span>
-      <span class="loc" id="toConsole" style="cursor:pointer">← Console · Main Gate</span>
+<!-- ============ GATE QR (students scan this) ============ -->
+<div class="view" id="gate">
+  <header class="topbar">
+    <div class="logo"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="2"/><path d="M14 14h3v3h-3zM18 18h3v3h-3z" fill="#fff"/></svg></div>
+    <span class="brand">DormGate</span>
+    <span class="divider"></span>
+    <span class="role">Gate QR</span>
+    <div class="right">
+      <span class="switch" id="toConsole"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Console</span>
+      <span class="gate" id="gateSite">Main Gate</span>
     </div>
-    <div class="viewfinder">
-      <div class="hint">Align the student's QR inside the frame</div>
-      <div class="frame">
-        <div class="box">
-          <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
-          <img class="qr" data-qr width="150" height="150" alt="QR in viewfinder">
-          <span class="laser"></span>
-        </div>
-      </div>
-    </div>
-    <div class="result-sheet">
-      <div class="grab"></div>
-      <div class="who">
-        <span class="av">NA</span>
-        <div class="grow"><div class="nm">Nur Aisyah</div><div class="sub">23DLS001 · A-12 · 🟢 Inside</div></div>
-        <span class="badge badge-blue">OUTING</span>
-      </div>
-      <div class="dest"><span>East Coast Mall</span><b>Out → 6:15 PM</b></div>
-      <div class="acts">
-        <button class="btn btn-outline btn-sm" style="flex:1" id="toConsole2">Cancel</button>
-        <button class="btn btn-primary btn-sm" style="flex:1.7" data-scan="outing">Confirm — Out</button>
-      </div>
+  </header>
+  <div class="gate-body">
+    <div class="gate-card">
+      <div class="gate-title">Show this QR to students</div>
+      <div class="gate-sub">Students scan it, then choose their movement type and place.</div>
+      <div class="gate-qr"><img id="gateImg" width="260" height="260" alt="Gate QR"></div>
+      <div class="gate-token" id="gateToken">MAINGATE-0001</div>
+      <div class="gate-count">Expires in <b id="gateTime">05:00</b></div>
+      <div class="gate-bar"><span id="gateBar"></span></div>
+      <div class="gate-note">Auto-refreshes every 5 minutes so an old photo of the code will not work.</div>
+      <button class="btn btn-outline btn-sm" id="gateRefresh" style="max-width:220px">Refresh now</button>
     </div>
   </div>
 </div>
@@ -135,11 +127,6 @@
       <div class="sdetail" id="guardDetail"><!-- JS --></div>
     </div>
   </div>
-</div>
-
-<!-- ============ SCAN RESULT MODAL ============ -->
-<div class="overlay" id="scanOverlay">
-  <div class="dialog" id="scanDialog"><!-- JS --></div>
 </div>
 
 <script src="assets/js/data.js"></script>
