@@ -95,6 +95,7 @@ html, body { overflow-x: hidden; }
   border: 1.5px solid var(--border); border-radius: 13px; background: #fff; font: 700 13px var(--sans); color: var(--muted); cursor: pointer; }
 .students-split { flex: 1; display: grid; grid-template-columns: 1fr 372px; gap: 16px; min-height: 0; }
 .search-cols { grid-template-columns: 1.7fr 66px 110px 110px; }
+.outing-cols { grid-template-columns: 1.6fr 66px 1.3fr 92px 104px; }
 .tr.sel { margin: 6px -12px 0; padding: 11px 12px; border-radius: 12px; background: var(--blue-tint);
   border: 1.5px solid var(--blue-200); }
 

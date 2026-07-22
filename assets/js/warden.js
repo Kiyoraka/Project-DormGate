@@ -52,32 +52,19 @@
        </div>`));
   });
 
-  /* ---------- students: search results ---------- */
-  const statusBadge = {
-    outside: '<span class="pill-c" style="color:var(--blue);background:#fff">🔵 OUTSIDE</span>',
-    inside: '<span class="pill-c badge-green">🟢 INSIDE</span>',
-    home: '<span class="pill-c badge-amber">🟡 GOING HOME</span>',
-  };
+  /* ---------- students: ONLY those currently outing ---------- */
+  $('#wCurfew').textContent = D.curfew;
   const searchBody = $('#searchBody');
-  D.searchRows.forEach((r) => {
-    if (r.sel) {
-      searchBody.append(el(
-        `<div class="grid search-cols tr sel">
-           <div style="min-width:0"><div class="nm">${r.n}</div><div class="id" style="color:var(--muted)">${r.id}</div></div>
-           <span class="c ink">${r.rm}</span>
-           ${statusBadge.outside}
-           <span class="c ink" style="font-weight:700;font-size:11.5px">${r.last}</span>
-         </div>`));
-    } else {
-      searchBody.append(el(
-        `<div class="grid search-cols tr">
-           <div style="min-width:0"><div class="nm">${r.n}</div><div class="id">${r.id}</div></div>
-           <span class="c">${r.rm}</span>
-           ${statusBadge[r.status]}
-           <span class="c" style="font-size:11.5px">${r.last}</span>
-         </div>`));
-    }
-  });
+  D.outingNow.forEach((o, i) => searchBody.append(el(
+    `<div class="grid outing-cols tr${i === 0 ? ' sel' : ''}">
+       <div style="min-width:0"><div class="nm">${o.n}</div><div class="id"${i === 0 ? ' style="color:var(--muted)"' : ''}>${o.id}</div></div>
+       <span class="c${i === 0 ? ' ink' : ''}">${o.rm}</span>
+       <span class="c">${o.dest}</span>
+       <span class="c ink">${o.out}</span>
+       <span class="pill-c ${o.late ? 'badge-red' : 'badge-blue'}">${o.late ? 'PAST CURFEW' : 'OUT'}</span>
+     </div>`)));
+  $('#outingCount').textContent =
+    `${D.outingNow.length} students currently outing · ${D.outingNow.filter((o) => o.late).length} past curfew`;
 
   /* ---------- students: detail panel ---------- */
   const st = D.student;
