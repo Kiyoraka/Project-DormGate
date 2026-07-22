@@ -29,7 +29,11 @@
     if (s.ok) return '<span class="tag-c badge-green">NORMAL</span>';
     return '<span class="tag-c dash">—</span>';
   }
-  function resultKeyFor(s) { return s.late ? 'late' : (s.type === 'Going Home' ? 'home' : 'outing'); }
+  function resultKeyFor(s) {
+    if (s.late) return 'late';                    // returning after curfew
+    if (s.type === 'Going Home') return 'home';   // leaving to go home
+    return s.out ? 'outing' : 'return';           // leaving vs normal return
+  }
 
   const body = $('#scanBody');
   D.scans.forEach((s) => {
@@ -59,7 +63,7 @@
   /* ---------- scan result modal (1j / 1k / 1l) ---------- */
   const overlay = $('#scanOverlay');
   const dialog = $('#scanDialog');
-  const order = ['outing', 'home', 'late'];
+  const order = ['outing', 'home', 'return', 'late'];
   const toneColor = { blue: 'var(--blue)', amber: 'var(--amber)', red: 'var(--red)', green: 'var(--green)' };
 
   function render(key) {

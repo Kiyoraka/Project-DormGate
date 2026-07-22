@@ -125,6 +125,14 @@
         from: 'INSIDE', to: 'GOING HOME — no curfew applies', toTone: 'amber',
         note: 'Parent will be notified now and on return.', confirm: 'Confirm — Out', danger: false,
       },
+      return: {
+        key: 'return', badgeTone: 'blue', headerTone: 'plain', time: '9:40 PM',
+        initials: 'SM', avatarBg: 'var(--blue-tint)', avatarInk: 'var(--blue)',
+        name: 'Siti Maryam', sub: '23DLS045 · Room A-03', statusNow: 'OUTSIDE',
+        rows: [['Movement type', 'OUTING', 'blue'], ['Destination', 'Restaurant'], ['Time out', '5:45 PM'], ['Time in (now)', '9:40 PM · on time', 'green']],
+        from: 'OUTSIDE', to: 'INSIDE', toTone: 'green',
+        note: 'Returned before curfew — no Late Return. Parent will be notified of the return.', confirm: 'Confirm Return', danger: false,
+      },
       late: {
         key: 'late', badgeTone: 'blue', headerTone: 'danger', time: '10:24 PM',
         initials: 'AR', avatarBg: 'var(--red-tint)', avatarInk: 'var(--red)',
