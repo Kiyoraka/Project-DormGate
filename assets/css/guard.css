@@ -88,31 +88,7 @@ body { background: var(--surface); }
 .so-row .t { font: 700 10.5px var(--sans); color: var(--red); white-space: nowrap; }
 .viewall { text-align: center; font: 700 11.5px var(--sans); color: var(--blue); padding: 10px 0; cursor: pointer; }
 
-/* ---------- scan result modal ---------- */
-.overlay { position: fixed; inset: 0; background: rgba(10,30,66,.55); display: none;
-  align-items: center; justify-content: center; padding: 24px; z-index: 100; }
-.overlay.show { display: flex; animation: dg-fade .2s ease; }
-.dialog { width: 460px; max-width: 100%; background: #fff; border-radius: 20px; box-shadow: var(--shadow-pop); overflow: hidden; }
-.dialog .dhead { display: flex; align-items: center; gap: 10px; padding: 18px 24px; border-bottom: 1px solid var(--border-soft); }
-.dialog .dhead .t { font: 800 15px var(--head); color: var(--ink); }
-.dialog .dhead .loc { margin-left: auto; font: 600 11.5px var(--sans); color: var(--muted-2); }
-.dialog .danger-bar { display: flex; gap: 10px; align-items: center; background: var(--red); padding: 12px 24px;
-  font: 800 12.5px var(--sans); color: #fff; }
-.dialog .who { padding: 20px 24px; display: flex; align-items: center; gap: 14px; }
-.dialog .who .av { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font: 800 17px var(--head); }
-.dialog .who .nm { font: 800 17px var(--head); color: var(--ink); }
-.dialog .who .sub { font: 600 12px var(--sans); color: var(--muted); margin-top: 2px; }
-.dialog .dtable { margin: 0 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 4px 16px; }
-.dialog .dtable .r { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border-soft); }
-.dialog .dtable .r:last-child { border-bottom: none; }
-.dialog .dtable .k { font: 600 12px var(--sans); color: var(--muted); }
-.dialog .dtable .v { font: 800 12px var(--sans); }
-.transition { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 24px 4px; flex-wrap: wrap; }
-.transition .badge { font-size: 11px; padding: 6px 14px; }
-.dialog .dnote { font: 600 11px var(--sans); color: var(--muted-2); text-align: center; padding: 8px 24px 0; }
-.dialog .dactions { display: flex; gap: 12px; padding: 16px 24px 22px; }
-.dialog .dactions .btn { }
-.dialog .dactions .btn.wide { flex: 1.6; }
+/* popup shell (.overlay / .dialog) now lives in tokens.css — shared with the student app */
 
 /* ---------- mobile scanner (1m) ---------- */
 #scanner { justify-content: center; background: #dfe7f4; padding: 22px 0; min-height: 100vh; }

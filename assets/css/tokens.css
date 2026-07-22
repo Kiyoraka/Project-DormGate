@@ -147,6 +147,36 @@ h1, h2, h3, h4 { margin: 0; font-family: var(--head); }
 /* screen fade-in on route change */
 .screen { animation: dg-fade .28s ease; }
 
+/* ============================================================
+   Popup shell — shared by the student movement popup and any
+   dialog-style overlay. Moved here from guard.css.
+   ============================================================ */
+.overlay { position: fixed; inset: 0; background: rgba(10,30,66,.55); display: none;
+  align-items: center; justify-content: center; padding: 24px; z-index: 100; }
+.overlay.show { display: flex; animation: dg-fade .2s ease; }
+.dialog { width: 460px; max-width: 100%; background: #fff; border-radius: 20px;
+  box-shadow: var(--shadow-pop); overflow: hidden; max-height: 92vh; overflow-y: auto; }
+.dialog .dhead { display: flex; align-items: center; gap: 10px; padding: 18px 24px; border-bottom: 1px solid var(--border-soft); }
+.dialog .dhead .t { font: 800 15px var(--head); color: var(--ink); }
+.dialog .dhead .loc { margin-left: auto; font: 600 11.5px var(--sans); color: var(--muted-2); }
+.dialog .danger-bar { display: flex; gap: 10px; align-items: center; background: var(--red); padding: 12px 24px;
+  font: 800 12.5px var(--sans); color: #fff; }
+.dialog .who { padding: 20px 24px; display: flex; align-items: center; gap: 14px; }
+.dialog .who .av { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font: 800 17px var(--head); }
+.dialog .who .nm { font: 800 17px var(--head); color: var(--ink); }
+.dialog .who .sub { font: 600 12px var(--sans); color: var(--muted); margin-top: 2px; }
+.dialog .dtable { margin: 0 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 4px 16px; }
+.dialog .dtable .r { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border-soft); }
+.dialog .dtable .r:last-child { border-bottom: none; }
+.dialog .dtable .k { font: 600 12px var(--sans); color: var(--muted); }
+.dialog .dtable .v { font: 800 12px var(--sans); }
+.dialog .dbody { padding: 18px 24px 0; display: flex; flex-direction: column; gap: 14px; }
+.transition { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 24px 4px; flex-wrap: wrap; }
+.transition .badge { font-size: 11px; padding: 6px 14px; }
+.dialog .dnote { font: 600 11px var(--sans); color: var(--muted-2); text-align: center; padding: 8px 24px 0; }
+.dialog .dactions { display: flex; gap: 12px; padding: 16px 24px 22px; }
+.dialog .dactions .btn.wide { flex: 1.6; }
+
 /* generic field group (label + field) */
 .fieldgroup { display: flex; flex-direction: column; gap: 6px; }
 
