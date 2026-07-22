@@ -8,13 +8,6 @@
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const el = (h) => { const t = document.createElement('template'); t.innerHTML = h.trim(); return t.content.firstChild; };
 
-  /* staff login gate */
-  $('#wardenSignIn').addEventListener('click', () => {
-    $('#login').classList.add('hidden');
-    $('#portal').classList.remove('hidden');
-    window.scrollTo(0, 0);
-  });
-
   /* identity + counts */
   $('#wAv').textContent = D.staff.warden.initials;
   $('#wName').textContent = D.staff.warden.name;
