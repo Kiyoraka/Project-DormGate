@@ -1,15 +1,25 @@
 /* ============================================================
    DormGate — Deterministic QR-style code generator
    Renders a fake-but-stable QR as an inline SVG data URI.
-   Ported from the design's qrSrc(). Exposed as window.dgQR().
-   The permanent QR never changes (same seed → same pattern).
+   Seedable: the same token always draws the same pattern, and a
+   new token (each 5-minute gate cycle) draws a visibly different one.
+   Exposed as window.dgQR(token) and window.dgGateToken(cycle).
    ============================================================ */
 (function () {
-  let cached = null;
+  const cache = {};
 
-  function dgQR() {
-    if (cached) return cached;
-    let s = 1234567;
+  /* stable string -> positive 31-bit seed */
+  function seedFrom(str) {
+    let h = 1234567;
+    for (let i = 0; i < str.length; i++) h = (Math.imul(31, h) + str.charCodeAt(i)) | 0;
+    return (Math.abs(h) % 2147483646) + 1;
+  }
+
+  function dgQR(token) {
+    const key = token || 'DORMGATE';
+    if (cache[key]) return cache[key];
+
+    let s = seedFrom(key);
     const rnd = () => (s = Math.imul(48271, s) % 2147483647, (s & 0xffff) / 0xffff);
     const n = 25, u = 8, q = 2, sz = (n + 2 * q) * u;
     const inFinder = (x, y) =>
@@ -37,16 +47,24 @@
       `<rect width="${sz}" height="${sz}" fill="#fff"/>` +
       `<g fill="#0A1E42">${cells}${finder(0, 0)}${finder(n - 7, 0)}${finder(0, n - 7)}</g></svg>`;
 
-    cached = 'data:image/svg+xml,' + encodeURIComponent(svg);
-    return cached;
+    cache[key] = 'data:image/svg+xml,' + encodeURIComponent(svg);
+    return cache[key];
   }
 
-  /* Auto-fill any <img data-qr> on the page */
+  /* token for a gate cycle — a new cycle means a new QR pattern */
+  function dgGateToken(cycle) {
+    return 'MAINGATE-' + String(cycle).padStart(4, '0');
+  }
+
+  /* Auto-fill any <img data-qr> (optionally with a data-qr token value) */
   function paint() {
-    document.querySelectorAll('img[data-qr]').forEach((img) => { img.src = dgQR(); });
+    document.querySelectorAll('img[data-qr]').forEach((img) => {
+      img.src = dgQR(img.getAttribute('data-qr') || undefined);
+    });
   }
 
   window.dgQR = dgQR;
+  window.dgGateToken = dgGateToken;
   window.dgPaintQR = paint;
   if (document.readyState !== 'loading') paint();
   else document.addEventListener('DOMContentLoaded', paint);

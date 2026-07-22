@@ -53,11 +53,11 @@
 
   /* ---------- still outside ---------- */
   const so = $('#stilloutBody');
-  D.stillOut.forEach((o) => so.append(el(
+  D.outingNow.forEach((o) => so.append(el(
     `<div class="so-row">
        <span class="dot dot-blue"></span>
-       <div class="grow"><div class="n">${o.n} · ${o.rm}</div><div class="d">${o.d}</div></div>
-       <span class="t">${o.t}</span>
+       <div class="grow"><div class="n">${o.n} · ${o.rm}</div><div class="d">${o.dest}</div></div>
+       <span class="t">out ${o.out}</span>
      </div>`)));
 
   /* ---------- scan result modal (1j / 1k / 1l) ---------- */

@@ -9,6 +9,9 @@
     site: 'Main Gate',
     date: 'Sunday, 19 July 2026',
 
+    /* rotating gate QR shown by the guard — students scan THIS */
+    gate: { site: 'Main Gate', ttlSeconds: 300 },
+
     student: {
       name: 'Nur Aisyah',
       fullName: 'Nur Aisyah Binti Rahman',
@@ -69,12 +72,12 @@
       { t: '8:40 PM', n: 'Ahmad Danish', id: '23DKM014', rm: 'B-07', type: 'Outing', dest: 'Hospital', in: true, ok: true },
     ],
 
-    /* guard "still outside" panel (1i) */
-    stillOut: [
-      { n: 'Nur Aisyah', rm: 'A-12', d: 'East Coast Mall', t: 'out 9:21 PM' },
-      { n: 'Danial Iskandar', rm: 'C-04', d: 'Restaurant', t: 'out 8:12 PM' },
-      { n: 'Kavitha Rao', rm: 'A-27', d: 'Kuantan Parade', t: 'out 7:58 PM' },
-      { n: 'Wan Amirul', rm: 'D-02', d: 'Others — Futsal', t: 'out 7:30 PM' },
+    /* students currently OUTING — guard rail + warden "currently outing" list */
+    outingNow: [
+      { n: 'Nur Aisyah', id: '23DLS001', rm: 'A-12', dest: 'East Coast Mall', out: '9:21 PM', late: true },
+      { n: 'Danial Iskandar', id: '24DEC118', rm: 'C-04', dest: 'Restaurant', out: '8:12 PM' },
+      { n: 'Kavitha Rao', id: '23DKA027', rm: 'A-27', dest: 'Kuantan Parade', out: '7:58 PM' },
+      { n: 'Wan Amirul', id: '24DEP072', rm: 'D-02', dest: 'Others — Futsal', out: '7:30 PM' },
     ],
 
     /* warden late-returns table (1n) */
@@ -103,7 +106,7 @@
     notifs: [
       { t: 'Late Return Alert', b: 'You have exceeded the dormitory curfew. Your movement has been recorded as a Late Return.', tm: '10:00 PM', tone: 'red' },
       { t: 'Curfew reminder', b: 'You have not returned to the dormitory. Please return before the 10:00 PM curfew.', tm: '9:30 PM', tone: 'amber' },
-      { t: 'Outing recorded', b: 'East Coast Mall — linked to your permanent QR. Your parent has been notified.', tm: '6:12 PM', tone: 'blue' },
+      { t: 'Outing recorded', b: 'East Coast Mall — recorded when you scanned the gate QR. Your parent has been notified.', tm: '6:12 PM', tone: 'blue' },
       { t: 'Checked in', b: 'Welcome back! Time in 9:40 PM at Main Gate. Your parent has been notified.', tm: 'Yesterday', tone: 'green' },
     ],
 
