@@ -50,9 +50,9 @@
 
   /* ---------- status card (inside / outside / goingHome) ---------- */
   const STATES = {
-    inside:    { ring: 'green', title: 'Inside',      sub: 'Checked in 4:56 PM · Main Gate',                          tone: 'green' },
-    outside:   { ring: 'blue',  title: 'Outside',     sub: `Outing · East Coast Mall · out 6:15 PM · back before ${D.curfew}`, tone: 'blue' },
-    goingHome: { ring: 'amber', title: 'Going Home',  sub: 'Johor Bahru · expected return 20 July',                   tone: 'amber' },
+    inside:    { ring: 'green', title: 'Inside',      sub: 'Checked in 4:56 PM · Main Gate',                          tone: 'green', scan: 'IN · 4:56 PM · Main Gate' },
+    outside:   { ring: 'blue',  title: 'Outside',     sub: `Outing · East Coast Mall · out 6:15 PM · back before ${D.curfew}`, tone: 'blue', scan: 'OUT · 6:15 PM · Main Gate' },
+    goingHome: { ring: 'amber', title: 'Going Home',  sub: 'Johor Bahru · expected return 20 July',                   tone: 'amber', scan: 'OUT · 8:30 AM · Main Gate' },
   };
   const order = ['inside', 'outside', 'goingHome'];
   let statusKey = 'inside';
@@ -62,6 +62,7 @@
       `<span class="ring ring-${s.ring}"></span>
        <div class="grow"><div class="st-title">${s.title}</div><div class="st-sub">${s.sub}</div></div>
        <span class="tag badge-${s.tone}">CURRENT STATUS</span>`;
+    $('#lastScan').textContent = s.scan;
   }
   paintStatus();
   $('#cycleStatus').addEventListener('click', () => {
