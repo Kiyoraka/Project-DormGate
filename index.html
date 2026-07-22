@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DormGate — Dormitory Movement System</title>
+<meta name="description" content="DormGate — QR-based dormitory movement, curfew &amp; late-return system. Choose a role to open its app.">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<style>
+  body { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 32px 20px;
+    background: radial-gradient(120% 90% at 50% -10%, #12335f 0%, var(--navy) 55%, var(--navy-deep) 100%); }
+  .portal { width: 100%; max-width: 940px; }
+  .brand { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; margin-bottom: 40px; }
+  .logo { width: 64px; height: 64px; border-radius: 20px; background: var(--blue);
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 30px rgba(29,91,240,.5); }
+  .brand h1 { font: 800 34px var(--head); color: #fff; letter-spacing: -.5px; }
+  .brand p { font: 500 14px var(--sans); color: var(--muted-3); margin: 0; }
+  .brand .tag { font: 700 11px var(--sans); color: var(--muted-3); letter-spacing: 1px;
+    border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: 6px 14px; }
+  .roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .role { background: #fff; border-radius: 20px; padding: 26px 24px; display: flex; flex-direction: column; gap: 14px;
+    box-shadow: 0 20px 50px rgba(4,12,28,.35); transition: transform .16s, box-shadow .16s; }
+  .role:hover { transform: translateY(-4px); box-shadow: 0 28px 60px rgba(4,12,28,.45); color: inherit; }
+  .role .ico { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; }
+  .role h2 { font: 800 18px var(--head); color: var(--ink); }
+  .role p { font: 500 12.5px/1.55 var(--sans); color: var(--muted); margin: 0; flex: 1; }
+  .role .go { display: flex; align-items: center; gap: 7px; font: 800 13px var(--sans); color: var(--blue); }
+  .badge-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .mini { font: 700 10px var(--sans); color: var(--muted); background: var(--surface); border: 1px solid var(--border);
+    border-radius: 999px; padding: 4px 9px; }
+  .foot { text-align: center; margin-top: 34px; font: 500 12px var(--sans); color: var(--muted-3); }
+  @media (max-width: 720px) { .roles { grid-template-columns: 1fr; } .brand h1 { font-size: 28px; } }
+</style>
+</head>
+<body>
+  <main class="portal">
+    <div class="brand">
+      <div class="logo">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="2"/><path d="M14 14h3v3h-3zM18 18h3v3h-3z" fill="#fff"/></svg>
+      </div>
+      <div>
+        <h1>DormGate</h1>
+        <p>Dormitory Movement System</p>
+      </div>
+      <span class="tag">QR · CURFEW · LATE-RETURN TRACKING</span>
+    </div>
+
+    <div class="roles">
+      <a class="role" href="student.html">
+        <div class="ico" style="background:var(--blue-tint)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#1D5BF0" stroke-width="2"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6" stroke="#1D5BF0" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h2>Student</h2>
+        <p>Register once for a permanent QR, request outings or going-home, and show your pass at the guardhouse.</p>
+        <div class="badge-row"><span class="mini">Mobile app</span><span class="mini">QR pass</span><span class="mini">History</span></div>
+        <span class="go">Open student app
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m0 0l-6-6m6 6l-6 6" stroke="#1D5BF0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+
+      <a class="role" href="guard.html">
+        <div class="ico" style="background:var(--navy)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 8V5a2 2 0 012-2h3M16 3h3a2 2 0 012 2v3M21 16v3a2 2 0 01-2 2h-3M8 21H5a2 2 0 01-2-2v-3M3 12h18" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </div>
+        <h2>Security Guard</h2>
+        <p>Scan student QR codes at the gate. See live in/out counts, curfew status, and record late returns automatically.</p>
+        <div class="badge-row"><span class="mini">Desktop console</span><span class="mini">QR scan</span><span class="mini">Live counts</span></div>
+        <span class="go">Open guard console
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m0 0l-6-6m6 6l-6 6" stroke="#1D5BF0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+
+      <a class="role" href="warden.html">
+        <div class="ico" style="background:var(--amber-tint)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 21V9M12 21V3M19 21v-8" stroke="#C77700" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </div>
+        <h2>Warden</h2>
+        <p>Oversight across blocks — dashboard, student search with full movement history, and daily / weekly / monthly reports.</p>
+        <div class="badge-row"><span class="mini">Desktop</span><span class="mini">Search</span><span class="mini">Reports</span></div>
+        <span class="go">Open warden portal
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m0 0l-6-6m6 6l-6 6" stroke="#1D5BF0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+
+    <p class="foot">Hardcoded prototype · curfew 10:00 PM · Main Gate · demo data only</p>
+  </main>
+</body>
+</html>

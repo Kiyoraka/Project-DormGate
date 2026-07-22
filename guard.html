@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DormGate — Guard Console</title>
+<meta name="description" content="DormGate guard console — scan student QR, live in/out counts, curfew &amp; late-return tracking.">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/guard.css">
+</head>
+<body>
+
+<!-- ============ CONSOLE (desktop) ============ -->
+<div class="view active" id="console">
+  <header class="topbar">
+    <div class="logo"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="2"/><path d="M14 14h3v3h-3zM18 18h3v3h-3z" fill="#fff"/></svg></div>
+    <span class="brand">DormGate</span>
+    <span class="divider"></span>
+    <span class="role">Guard Console</span>
+    <div class="right">
+      <a class="home" href="index.html">← Roles</a>
+      <span class="switch" id="toScanner"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="6" y="2" width="12" height="20" rx="3" stroke="#fff" stroke-width="2"/><path d="M10 19h4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Mobile scanner</span>
+      <span class="gate">Main Gate</span>
+      <span class="clock">10:26 PM</span>
+      <div class="who"><span class="avatar" id="gAv">RH</span><span id="gName">Rosli Hamid</span></div>
+    </div>
+  </header>
+
+  <div class="console-body">
+    <div class="overview-head">
+      <div>
+        <h1>Tonight's overview</h1>
+        <div class="sub">Sunday, 19 July 2026 · curfew <span id="cf1">10:00 PM</span> <span class="late">· passed 26 min ago</span></div>
+      </div>
+      <div class="scan-btn" data-scan="outing">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 8V5a2 2 0 012-2h3M16 3h3a2 2 0 012 2v3M21 16v3a2 2 0 01-2 2h-3M8 21H5a2 2 0 01-2-2v-3M3 12h18" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+        Scan QR
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat"><div class="lab"><span class="dot dot-green"></span>Students Inside</div><div class="num" id="stInside">412</div><div class="foot">of 464 residents</div></div>
+      <div class="stat"><div class="lab"><span class="dot dot-blue"></span>Students Outside</div><div class="num blue" id="stOutside">37</div><div class="foot red">past curfew — reminder sent 9:30 PM</div></div>
+      <div class="stat"><div class="lab"><span class="dot dot-amber"></span>Going Home</div><div class="num" id="stHome">12</div><div class="foot">3 expected back tomorrow</div></div>
+      <div class="stat alarm"><div class="lab red"><span class="dot dot-red"></span>Late Returns · Today</div><div class="num red" id="stLate">3</div><div class="foot">students &amp; parents notified</div></div>
+    </div>
+
+    <div class="console-grid">
+      <div class="panel">
+        <div class="phead"><span class="t">Recent scan activity</span><span class="a">View full log</span></div>
+        <div class="thead scan-cols">
+          <span>TIME</span><span>STUDENT</span><span>ROOM</span><span class="col-move">MOVEMENT</span><span class="col-dest">DESTINATION</span><span class="col-scan">SCAN</span><span>RECORD</span>
+        </div>
+        <div class="tbody" id="scanBody"><!-- JS --></div>
+      </div>
+
+      <div class="rail">
+        <div class="curfew-card">
+          <div class="lab"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#9DB4DC" stroke-width="2"/><path d="M12 7v5l3.5 2" stroke="#9DB4DC" stroke-width="2" stroke-linecap="round"/></svg>Curfew <span id="cf2">10:00 PM</span></div>
+          <h3>Curfew passed</h3>
+          <p>Every scan-in from now is recorded as a <b>Late Return</b> automatically.</p>
+        </div>
+        <div class="panel stillout">
+          <div class="phead"><span class="t">Still outside</span><span class="cnt" id="soCount">37</span></div>
+          <div id="stilloutBody"><!-- JS --></div>
+          <div class="viewall">View all 37</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MOBILE SCANNER (1m) ============ -->
+<div class="view" id="scanner">
+  <div class="phone">
+    <div class="scanner-head">
+      <span class="t">Scan QR</span>
+      <span class="loc" id="toConsole" style="cursor:pointer">← Console · Main Gate</span>
+    </div>
+    <div class="viewfinder">
+      <div class="hint">Align the student's QR inside the frame</div>
+      <div class="frame">
+        <div class="box">
+          <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+          <img class="qr" data-qr width="150" height="150" alt="QR in viewfinder">
+          <span class="laser"></span>
+        </div>
+      </div>
+    </div>
+    <div class="result-sheet">
+      <div class="grab"></div>
+      <div class="who">
+        <span class="av">NA</span>
+        <div class="grow"><div class="nm">Nur Aisyah</div><div class="sub">23DLS001 · A-12 · 🟢 Inside</div></div>
+        <span class="badge badge-blue">OUTING</span>
+      </div>
+      <div class="dest"><span>East Coast Mall</span><b>Out → 6:15 PM</b></div>
+      <div class="acts">
+        <button class="btn btn-outline btn-sm" style="flex:1" id="toConsole2">Cancel</button>
+        <button class="btn btn-primary btn-sm" style="flex:1.7" data-scan="outing">Confirm — Out</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SCAN RESULT MODAL ============ -->
+<div class="overlay" id="scanOverlay">
+  <div class="dialog" id="scanDialog"><!-- JS --></div>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/qr.js"></script>
+<script src="assets/js/guard.js"></script>
+</body>
+</html>
