@@ -1,5 +1,5 @@
 /* ============================================================
-   DormGate — Student app logic
+   DSMS — Student app logic
    The student SCANS the guard's rotating gate QR. A popup then
    records the movement (or auto-detects a return).
    ============================================================ */

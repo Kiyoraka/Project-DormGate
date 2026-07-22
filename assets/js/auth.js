@@ -1,5 +1,5 @@
 /* ============================================================
-   DormGate — Unified login
+   DSMS — Unified login
    One card for all three roles. The ID decides the dashboard.
    Hardcoded demo credentials — no backend, no real auth.
    ============================================================ */

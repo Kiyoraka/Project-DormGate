@@ -1,5 +1,5 @@
 /* ============================================================
-   DormGate — Warden portal logic
+   DSMS — Warden portal logic
    Page switching + dashboard/search/reports rendering.
    ============================================================ */
 (function () {

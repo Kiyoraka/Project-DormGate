@@ -1,5 +1,5 @@
 /* ============================================================
-   DormGate — Guard console logic
+   DSMS — Guard console logic
    The guard no longer scans. They DISPLAY a rotating gate QR
    (5-minute expiry) that students scan, and watch the live log.
    ============================================================ */

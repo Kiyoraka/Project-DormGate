@@ -1,5 +1,5 @@
 /* ============================================================
-   DormGate — Deterministic QR-style code generator
+   DSMS — Deterministic QR-style code generator
    Renders a fake-but-stable QR as an inline SVG data URI.
    Seedable: the same token always draws the same pattern, and a
    new token (each 5-minute gate cycle) draws a visibly different one.

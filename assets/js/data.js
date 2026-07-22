@@ -1,5 +1,5 @@
 /* ============================================================
-   DormGate — Hardcoded data (single source of truth)
+   DSMS — Hardcoded data (single source of truth)
    Mirrors the design's data block. No backend.
    Exposed as window.DG_DATA
    ============================================================ */
