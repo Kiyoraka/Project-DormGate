@@ -209,11 +209,11 @@ h1, h2, h3, h4 { margin: 0; font-family: var(--head); }
   background: var(--red-tint); border-radius: 10px; padding: 9px 12px; }
 .auth-err.show { display: block; animation: dg-fade .2s ease; }
 
-/* demo quick-fill: 1 row x 3 columns */
+/* demo quick-fill: 2 x 2 grid */
 .auth-divider { display: flex; align-items: center; gap: 10px; }
 .auth-divider .l { flex: 1; height: 1px; background: var(--border); }
 .auth-divider .t { font: 700 10px var(--sans); color: var(--muted-2); letter-spacing: .6px; white-space: nowrap; }
-.auth-quick { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.auth-quick { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
 .auth-quick button { height: 40px; border-radius: 11px; border: 1.5px solid var(--border);
   background: #fff; color: var(--muted); font: 800 12px var(--sans); cursor: pointer;
   transition: border-color .15s, color .15s, background .15s; }
