@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DSMS — Parent</title>
+<meta name="description" content="DSMS parent app — follow your child's dormitory movement: current status, outing and going-home history, and alerts. Read-only.">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/parent.css">
+</head>
+<body>
+<div class="app" id="app">
+
+  <!-- ========== FIRST LOGIN · SET PASSWORD (no tabbar) ========== -->
+  <section class="s" id="setpw">
+    <div class="subhead">
+      <div class="back">
+        <a class="iconbtn" href="index.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="#0A1E42" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <h2>Set your password</h2>
+      </div>
+      <div class="sub">First login — create a new password to replace your <b style="color:var(--blue)">phone number</b>. You will use it every time from now on.</div>
+    </div>
+    <div class="scrollable pad" style="display:flex;flex-direction:column;gap:14px">
+      <div class="fieldgroup">
+        <div class="field-label">NEW PASSWORD</div>
+        <div class="field" style="justify-content:space-between">
+          <input class="auth-input" id="newPw" type="password" autocomplete="new-password" placeholder="New password">
+          <svg id="toggleNew" style="cursor:pointer;flex-shrink:0" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" stroke="#8A9AB8" stroke-width="1.8"/><circle cx="12" cy="12" r="3" stroke="#8A9AB8" stroke-width="1.8"/></svg>
+        </div>
+      </div>
+      <div class="fieldgroup">
+        <div class="field-label">CONFIRM PASSWORD</div>
+        <div class="field"><input class="auth-input" id="confirmPw" type="password" autocomplete="new-password" placeholder="Re-enter password"></div>
+      </div>
+      <div class="auth-err" id="setpwErr"></div>
+      <div class="banner banner-blue">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1D5BF0" stroke-width="2"/><path d="M12 7v5l3.5 2" stroke="#1D5BF0" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Your new password is stored on <b>this device</b> only. Keep it safe — the warden can reset it if you forget.</span>
+      </div>
+    </div>
+    <div class="footpad"><button class="btn btn-primary" id="savePw">Save password</button></div>
+  </section>
+
+  <!-- ========== HOME · CHILD STATUS ========== -->
+  <section class="s active" id="dashboard">
+    <div class="dash-head">
+      <div class="top">
+        <div class="avatar" id="parentAv">RI</div>
+        <div class="grow">
+          <div class="greet">Parent view 👋</div>
+          <div class="who" id="parentName">Rahman Bin Ismail</div>
+        </div>
+        <div class="bell" data-nav="alerts">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M6 9a6 6 0 1112 0c0 5 2 6 2 6H4s2-1 2-6" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 19a2 2 0 004 0" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="ping"></span>
+        </div>
+      </div>
+      <div class="child-chip">
+        <span class="cc-label">CHILD</span>
+        <span class="cc-name" id="childName">Nur Aisyah</span>
+        <span class="hpill" id="childId">23DLS001</span>
+        <span class="hpill" id="childRoom">Room A-12</span>
+      </div>
+    </div>
+    <div class="dash-body">
+      <!-- child status card -->
+      <div class="status-card" id="statusCard"><!-- JS --></div>
+
+      <!-- last scan -->
+      <div class="row" style="justify-content:space-between;background:#fff;border:1px solid var(--border);border-radius:14px;padding:11px 16px">
+        <span class="field-label">LAST SCAN</span>
+        <span id="lastScan" style="font:700 12.5px var(--sans);color:var(--ink)">OUT · 9:21 PM · Main Gate</span>
+      </div>
+
+      <div class="section-head"><span class="t">Recent movement</span><span class="a" data-nav="history">View all</span></div>
+      <div class="mini-list" id="recentList"><!-- JS --></div>
+
+      <div class="parent-card" style="margin-top:2px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#8A9AB8" stroke-width="2"/><path d="M12 7v5l3.5 2" stroke="#8A9AB8" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>This view updates as your child scans the gate. Curfew is 10:00 PM — a later return is flagged as a Late Return.</span>
+      </div>
+    </div>
+    <nav class="tabbar" id="parentTabs">
+      <div class="tab on" data-nav="dashboard"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1v-9.5z" stroke="#1D5BF0" stroke-width="2" stroke-linejoin="round"/></svg><span>Home</span></div>
+      <div class="tab" data-nav="history"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#8A9AB8" stroke-width="2"/><path d="M12 7v5l3.5 2" stroke="#8A9AB8" stroke-width="2" stroke-linecap="round"/></svg><span>History</span></div>
+      <div class="tab" data-nav="alerts"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M6 9a6 6 0 1112 0c0 5 2 6 2 6H4s2-1 2-6" stroke="#8A9AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 19a2 2 0 004 0" stroke="#8A9AB8" stroke-width="2" stroke-linecap="round"/></svg><span>Alerts</span></div>
+      <div class="tab" data-nav="child"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#8A9AB8" stroke-width="2"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6" stroke="#8A9AB8" stroke-width="2" stroke-linecap="round"/></svg><span>Child</span></div>
+    </nav>
+  </section>
+
+  <!-- ========== HISTORY ========== -->
+  <section class="s" id="history">
+    <div class="subhead" style="padding-bottom:6px">
+      <span style="font:700 24px var(--head);color:var(--ink)">History</span>
+      <div class="filter-chips">
+        <span class="chip on">All</span><span class="chip">Outing</span><span class="chip">Going Home</span><span class="chip">Late</span>
+      </div>
+    </div>
+    <div class="scrollable">
+      <div class="hist-list" id="histList"><!-- JS --></div>
+      <div class="note">Your child's full movement history — visible to you and dorm staff</div>
+    </div>
+    <nav class="tabbar">
+      <div class="tab" data-nav="dashboard"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1v-9.5z" stroke="#8A9AB8" stroke-width="2" stroke-linejoin="round"/></svg><span>Home</span></div>
+      <div class="tab on" data-nav="history"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1D5BF0" stroke-width="2"/><path d="M12 7v5l3.5 2" stroke="#1D5BF0" stroke-width="2" stroke-linecap="round"/></svg><span>History</span></div>
+      <div class="tab" data-nav="alerts"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M6 9a6 6 0 1112 0c0 5 2 6 2 6H4s2-1 2-6" stroke="#8A9AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 19a2 2 0 004 0" stroke="#8A9AB8" stroke-width="2" stroke-linecap="round"/></svg><span>Alerts</span></div>
+      <div class="tab" data-nav="child"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#8A9AB8" stroke-width="2"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6" stroke="#8A9AB8" stroke-width="2" stroke-linecap="round"/></svg><span>Child</span></div>
+    </nav>
+  </section>
+
+  <!-- ========== ALERTS ========== -->
+  <section class="s" id="alerts">
+    <div class="subhead" style="padding-bottom:12px"><span style="font:700 24px var(--head);color:var(--ink)">Alerts</span></div>
+    <div class="sec-label">TODAY</div>
+    <div class="scrollable">
+      <div class="notif-list" id="notifList"><!-- JS --></div>
+      <div class="pad" style="margin-top:10px">
+        <div class="parent-card">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9a6 6 0 1112 0c0 5 2 6 2 6H4s2-1 2-6" stroke="#8A9AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 19a2 2 0 004 0" stroke="#8A9AB8" stroke-width="2" stroke-linecap="round"/></svg>
+          <span>You receive a copy of every movement and late-return alert for your child.</span>
+        </div>
+      </div>
+    </div>
+    <nav class="tabbar">
+      <div class="tab" data-nav="dashboard"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1v-9.5z" stroke="#8A9AB8" stroke-width="2" stroke-linejoin="round"/></svg><span>Home</span></div>
+      <div class="tab" data-nav="history"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#8A9AB8" stroke-width="2"/><path d="M12 7v5l3.5 2" stroke="#8A9AB8" stroke-width="2" stroke-linecap="round"/></svg><span>History</span></div>
+      <div class="tab on" data-nav="alerts"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M6 9a6 6 0 1112 0c0 5 2 6 2 6H4s2-1 2-6" stroke="#1D5BF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 19a2 2 0 004 0" stroke="#1D5BF0" stroke-width="2" stroke-linecap="round"/></svg><span>Alerts</span></div>
+      <div class="tab" data-nav="child"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#8A9AB8" stroke-width="2"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6" stroke="#8A9AB8" stroke-width="2" stroke-linecap="round"/></svg><span>Child</span></div>
+    </nav>
+  </section>
+
+  <!-- ========== CHILD · DETAILS + GUARDIAN + SIGN OUT ========== -->
+  <section class="s" id="child">
+    <div class="subhead" style="padding-bottom:12px"><span style="font:700 24px var(--head);color:var(--ink)">Child</span></div>
+    <div class="scrollable pad" style="display:flex;flex-direction:column;gap:14px">
+      <div class="card" style="padding:18px;display:flex;align-items:center;gap:14px">
+        <span class="avatar" id="childAv" style="width:56px;height:56px;font-size:18px;flex-shrink:0">NA</span>
+        <div class="grow">
+          <div id="childFullName" style="font:800 16px var(--head);color:var(--ink)">Nur Aisyah Binti Rahman</div>
+          <div id="childSub" style="font:600 12px var(--sans);color:var(--muted);margin-top:3px">23DLS001 · Room A-12</div>
+        </div>
+      </div>
+
+      <div class="section-head"><span class="t">Child details</span></div>
+      <div class="detail-table" id="childTable" style="margin-top:0"><!-- JS --></div>
+
+      <div class="section-head"><span class="t">Guardian (you)</span></div>
+      <div class="detail-table" id="guardianTable" style="margin-top:0"><!-- JS --></div>
+
+      <a class="btn btn-outline" href="index.html" style="text-decoration:none;margin-top:4px">Sign out</a>
+    </div>
+    <nav class="tabbar">
+      <div class="tab" data-nav="dashboard"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1v-9.5z" stroke="#8A9AB8" stroke-width="2" stroke-linejoin="round"/></svg><span>Home</span></div>
+      <div class="tab" data-nav="history"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#8A9AB8" stroke-width="2"/><path d="M12 7v5l3.5 2" stroke="#8A9AB8" stroke-width="2" stroke-linecap="round"/></svg><span>History</span></div>
+      <div class="tab" data-nav="alerts"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M6 9a6 6 0 1112 0c0 5 2 6 2 6H4s2-1 2-6" stroke="#8A9AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 19a2 2 0 004 0" stroke="#8A9AB8" stroke-width="2" stroke-linecap="round"/></svg><span>Alerts</span></div>
+      <div class="tab on" data-nav="child"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#1D5BF0" stroke-width="2"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6" stroke="#1D5BF0" stroke-width="2" stroke-linecap="round"/></svg><span>Child</span></div>
+    </nav>
+  </section>
+
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/parent.js"></script>
+</body>
+</html>
